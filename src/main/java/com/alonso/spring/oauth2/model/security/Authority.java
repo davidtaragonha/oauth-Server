@@ -20,6 +20,9 @@ public class Authority implements GrantedAuthority {
     @Column(name = "ID")
     private Long id;
 
+    @Column(name = "MODULE")
+    private String module;
+
     @Column(name = "NAME")
     private String name;
 
@@ -37,6 +40,14 @@ public class Authority implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
     }
 
     @Override
