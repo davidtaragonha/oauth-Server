@@ -20,9 +20,6 @@
         <!--BOMs-->
         <org.springframework.version>1.5.9.RELEASE</org.springframework.version>
 
-        <!--Plugins-->
-        <spring-boot-maven-plugin.version>1.5.10.RELEASE</spring-boot-maven-plugin.version>
-
         <!--Libraries-->
         <h2.version>1.4.196</h2.version>
         <flywaydb.version>5.0.5</flywaydb.version>
