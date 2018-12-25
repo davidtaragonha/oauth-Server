@@ -18,13 +18,13 @@ public class AuthorityService {
     }
 
     @Transactional(readOnly = true)
-    @PreAuthorize("hasAuthority('AUTHORITY_READ')")
+    @PreAuthorize("hasAuthority('IAM_AUTHORITY_READ')")
     public List<Authority> getAll() {
         return authorityRepository.findAll();
     }
 
     @Transactional(readOnly = true)
-    @PreAuthorize("hasAuthority('AUTHORITY_READ')")
+    @PreAuthorize("hasAuthority('IAM_AUTHORITY_READ')")
     public List<Authority> getByModule(String module) {
         return authorityRepository.findByModule(module);
     }

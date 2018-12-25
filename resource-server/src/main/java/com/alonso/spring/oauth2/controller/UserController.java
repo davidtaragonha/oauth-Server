@@ -1,9 +1,10 @@
 package com.alonso.spring.oauth2.controller;
 
+import com.alonso.spring.oauth2.model.User;
+import com.alonso.spring.oauth2.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,31 +22,31 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
-    public UserController(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    List<UserDetails> getAll() {
-        throw new UnsupportedOperationException();
+    List<User> getAll() {
+        return this.userService.loadAllUsers();
     }
 
-    @GetMapping("/{userName}")
+    @GetMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    UserDetails getUserByUserName(@PathVariable String userName) {
-        return userDetailsService.loadUserByUsername(userName);
+    User getUserByUserName(@PathVariable long id) {
+        return userService.loadUserById(id);
     }
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Void> create(@RequestBody UserDetails userDetails) {
         throw new UnsupportedOperationException();
-//        userDetailsService.create(userDetails);
+//        userService.create(userDetails);
 //        HttpHeaders headers = new HttpHeaders();
 //        ControllerLinkBuilder linkBuilder = linkTo(methodOn(UserController.class).get(userDetails.getUserName()));
 //        headers.setLocation(linkBuilder.toUri());
@@ -54,13 +55,25 @@ public class UserController {
 
     @PutMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public void update(@RequestBody UserDetails userDetails) {
+    public void update(@RequestBody User userDetails) {
         throw new UnsupportedOperationException();
     }
 
-    @DeleteMapping("/{userName}")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable long id) {
+        userService.deleteUserById(id);
+    }
+
+    @PutMapping("/{id}/assignAuthority")
     @ResponseStatus(value = HttpStatus.OK)
-    public void delete(@PathVariable String userName) {
-        throw new UnsupportedOperationException();
+    public void assignAuthority(@PathVariable long id, @RequestBody long authorityId) {
+        userService.assignAuthority(id, authorityId);
+    }
+
+    @PutMapping("/{id}/revokeAuthority")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void revokeAuthority(@PathVariable long id,  @RequestBody long authorityId) {
+        userService.revokeAuthority(id, authorityId);
     }
 }
