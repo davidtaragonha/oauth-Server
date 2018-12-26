@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>com.alonso</groupId>
-            <artifactId>resource-server</artifactId>
+            <artifactId>iam-resource-server</artifactId>
         </dependency>
 
         <dependency>

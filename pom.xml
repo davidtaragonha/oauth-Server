@@ -11,10 +11,10 @@
 
     <modules>
         <module>model</module>
-        <module>resource-server</module>
+        <module>iam-resource-server</module>
         <module>runtime</module>
         <module>security-server</module>
-        <module>external-resource-server</module>
+        <module>external-result-resource-server</module>
     </modules>
 
     <properties>
@@ -40,7 +40,7 @@
             </dependency>
             <dependency>
                 <groupId>com.alonso</groupId>
-                <artifactId>resource-server</artifactId>
+                <artifactId>iam-resource-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -3,6 +3,7 @@ package com.alonso.sprin.oauth2.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -12,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/external")
+@RequestMapping("/result")
 public class ExternalController {
 
     @GetMapping
@@ -25,7 +26,15 @@ public class ExternalController {
     @GetMapping("{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    String getByModule(@PathVariable String id) {
+    String getById(@PathVariable String id) {
         return id;
+    }
+
+    @PutMapping
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody
+    void update() {
+        //TODO Review what is better with ${id} or without
+        throw new UnsupportedOperationException();
     }
 }
