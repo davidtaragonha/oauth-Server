@@ -56,6 +56,7 @@ public class UserController {
     @PutMapping
     @ResponseStatus(value = HttpStatus.OK)
     public void update(@RequestBody User userDetails) {
+        //TODO Review what is better with ${id} or without
         throw new UnsupportedOperationException();
     }
 
