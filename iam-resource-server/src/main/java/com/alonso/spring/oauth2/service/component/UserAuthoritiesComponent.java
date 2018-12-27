@@ -6,6 +6,7 @@ import com.alonso.spring.oauth2.repository.AuthorityRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,7 +20,7 @@ public class UserAuthoritiesComponent {
     }
 
     public User assignAuthority(User user, long authorityId) {
-        Authority authorityToAssign = authorityRepository.findOne(authorityId);
+        Authority authorityToAssign = authorityRepository.findById(authorityId).orElseThrow(NoSuchElementException::new);
         user.getAuthorities().add(authorityToAssign);
 
         return user;

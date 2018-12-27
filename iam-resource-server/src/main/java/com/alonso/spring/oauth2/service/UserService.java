@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -29,26 +30,26 @@ public class UserService {
     @Transactional(readOnly = true)
     @PreAuthorize("hasAuthority('IAM_USER_READ')")
     public User loadUserById(long id) {
-        return userRepository.findOne(id);
+        return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
     @Transactional
     @PreAuthorize("hasAuthority('IAM_USER_DELETE')")
     public void deleteUserById(long id){
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 
     @Transactional
     @PreAuthorize("hasAuthority('IAM_AUTHORITY_ASSIGN')")
     public void assignAuthority(long userId, long authorityId) {
-        User user = userRepository.findOne(userId);
+        User user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
         userRepository.save(userAuthoritiesComponent.assignAuthority(user,authorityId));
     }
 
     @Transactional
     @PreAuthorize("hasAuthority('IAM_AUTHORITY_REVOKE')")
     public void revokeAuthority(long userId, long authorityId) {
-        User user = userRepository.findOne(userId);
+        User user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
         userRepository.save(userAuthoritiesComponent.revokeAuthority(user, authorityId));
     }
 }
