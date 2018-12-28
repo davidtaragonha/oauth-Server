@@ -18,7 +18,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private static final String SECURED_WRITE_SCOPE = "#oauth2.hasScope('result.write')";
     private static final String SECURED_PATTERN = "/result/**";
 
-    //TODO Review if it possible configure this in the app.properties
     @Bean
     public RemoteTokenServices tokenService() {
         RemoteTokenServices tokenService = new RemoteTokenServices();
