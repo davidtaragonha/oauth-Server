@@ -28,4 +28,16 @@ public class AuthorityService {
     public List<Authority> getByModule(String module) {
         return authorityRepository.findByModule(module);
     }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize("hasAuthority('IAM_AUTHORITY_READ')")
+    public List<Authority> getAuthoritiesNotAssignedToUser(long userId) {
+        return authorityRepository.findAuthoritiesNotAssignedToUser(userId);
+    }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize("hasAuthority('IAM_AUTHORITY_READ')")
+    public List<Authority> getAuthoritiesByModuleNotAssignedToUser(String moduleId, long userId) {
+        return authorityRepository.findAuthoritiesByModuleNotAssignedToUser(moduleId, userId);
+    }
 }

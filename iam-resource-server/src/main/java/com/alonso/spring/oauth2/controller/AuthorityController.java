@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/authority")
+@RequestMapping("/v1/authorities")
 public class AuthorityController {
 
     private final AuthorityService authorityService;
@@ -34,5 +34,19 @@ public class AuthorityController {
     public @ResponseBody
     List<Authority> getByModule(@PathVariable String id) {
         return authorityService.getByModule(id);
+    }
+
+    @GetMapping("notAssignedToUser/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody
+    List<Authority> getAllAuthoritiesNotAssignedToUser(@PathVariable long id) {
+        return authorityService.getAuthoritiesNotAssignedToUser(id);
+    }
+
+    @GetMapping("module/{moduleId}/notAssignedToUser/{userId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody
+    List<Authority> getAllAuthoritiesNotAssignedToUser(@PathVariable String moduleId, @PathVariable long userId) {
+        return authorityService.getAuthoritiesByModuleNotAssignedToUser(moduleId, userId);
     }
 }

@@ -16,7 +16,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private static final String RESOURCE_ID = "result-resource-server-rest-api";
     private static final String SECURED_READ_SCOPE = "#oauth2.hasScope('result.read')";
     private static final String SECURED_WRITE_SCOPE = "#oauth2.hasScope('result.write')";
-    private static final String SECURED_PATTERN = "/result/**";
+    private static final String SECURED_PATTERN = "v1/results/**";
 
     @Bean
     public RemoteTokenServices tokenService() {
