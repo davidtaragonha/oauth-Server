@@ -14,8 +14,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private static final String RESOURCE_ID = "iam-resource-server-rest-api";
     private static final String SECURED_READ_SCOPE = "#oauth2.hasScope('iam.read')";
     private static final String SECURED_WRITE_SCOPE = "#oauth2.hasScope('iam.write')";
-    private static final String SECURED_PATTERN_USER = "/user/**";
-    private static final String SECURED_PATTERN_AUTHORITY = "/authority/**";
+    private static final String SECURED_PATTERN_USER = "/v1/users/**";
+    private static final String SECURED_PATTERN_AUTHORITY = "/v1/authorities/**";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {

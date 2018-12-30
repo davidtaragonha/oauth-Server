@@ -19,12 +19,12 @@
 
     <properties>
         <!--BOMs-->
-        <org.springframework.version>1.5.9.RELEASE</org.springframework.version>
+        <org.springframework.version>2.1.1.RELEASE</org.springframework.version>
 
         <!--Libraries-->
         <h2.version>1.4.196</h2.version>
         <flywaydb.version>5.0.5</flywaydb.version>
-        <oauth2.version>2.2.1.RELEASE</oauth2.version>
+        <oauth2.version>2.3.4.RELEASE</oauth2.version>
 
         <!--Project properties-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,18 +66,12 @@
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>${oauth2.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>1.0.9.RELEASE</version>
+            </dependency>
 
-            <!--DataBase Dependencies-->
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-core</artifactId>
-                <version>${flywaydb.version}</version>
-            </dependency>
 
             <!--Test Dependencies-->
             <dependency>
