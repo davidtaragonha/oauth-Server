@@ -1,4 +1,4 @@
-package com.alonso.sprin.oauth2.config.server;
+package com.alonso.spring.oauth2.config.server;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private static final String RESOURCE_ID = "result-resource-server-rest-api";
     private static final String SECURED_READ_SCOPE = "#oauth2.hasScope('result.read')";
     private static final String SECURED_WRITE_SCOPE = "#oauth2.hasScope('result.write')";
-    private static final String SECURED_PATTERN = "v1/results/**";
+    private static final String SECURED_PATTERN = "/v1/results/**";
 
     @Bean
     public RemoteTokenServices tokenService() {
@@ -41,6 +41,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.POST, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
                 .antMatchers(HttpMethod.PUT, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
                 .antMatchers(HttpMethod.DELETE, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
-                .anyRequest().access(SECURED_READ_SCOPE);
+                .anyRequest().access(SECURED_READ_SCOPE)
+                .and().httpBasic();
     }
 }

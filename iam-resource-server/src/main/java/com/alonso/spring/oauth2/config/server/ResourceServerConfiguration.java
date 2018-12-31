@@ -30,6 +30,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.POST, SECURED_PATTERN_USER).access(SECURED_WRITE_SCOPE)
                 .antMatchers(HttpMethod.PUT, SECURED_PATTERN_USER).access(SECURED_WRITE_SCOPE)
                 .antMatchers(HttpMethod.DELETE, SECURED_PATTERN_USER).access(SECURED_WRITE_SCOPE)
-                .anyRequest().access(SECURED_READ_SCOPE);
+                .anyRequest().access(SECURED_READ_SCOPE)
+                .and().httpBasic();
     }
 }

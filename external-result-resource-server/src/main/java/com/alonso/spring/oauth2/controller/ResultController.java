@@ -1,6 +1,6 @@
-package com.alonso.sprin.oauth2.controller;
+package com.alonso.spring.oauth2.controller;
 
-import com.alonso.sprin.oauth2.service.ResultService;
+import com.alonso.spring.oauth2.service.ResultService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
