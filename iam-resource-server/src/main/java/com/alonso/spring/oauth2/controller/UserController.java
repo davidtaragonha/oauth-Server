@@ -42,7 +42,7 @@ public class UserController {
     public @ResponseBody
     List<UserView> getAll() {
         return this.userService.getAllUsers().stream()
-                .map(userViewMapper::fromDomain)
+                .map(userViewMapper::userToUserView)
                 .collect(toList());
     }
 
@@ -50,7 +50,7 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
     UserView getUserById(@PathVariable long id) {
-        return userViewMapper.fromDomain(userService.getUserById(id));
+        return userViewMapper.userToUserView(userService.getUserById(id));
     }
 
     @PostMapping

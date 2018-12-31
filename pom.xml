@@ -21,10 +21,14 @@
         <!--BOMs-->
         <org.springframework.version>2.1.1.RELEASE</org.springframework.version>
 
+        <!--Plugins-->
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+
         <!--Libraries-->
         <h2.version>1.4.196</h2.version>
         <flywaydb.version>5.0.5</flywaydb.version>
         <oauth2.version>2.3.4.RELEASE</oauth2.version>
+        <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
 
         <!--Project properties-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,6 +37,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--Project dependencies-->
             <dependency>
                 <groupId>com.alonso</groupId>
                 <artifactId>model</artifactId>
@@ -54,6 +59,7 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!--Srping dependencies-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -72,8 +78,14 @@
                 <version>1.0.9.RELEASE</version>
             </dependency>
 
+            <!--Mapstruct dependencies-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
 
-            <!--Test Dependencies-->
+            <!--Spring Test Dependencies-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
@@ -87,12 +99,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <compilerArg>
+                            -Amapstruct.defaultComponentModel=spring
+                        </compilerArg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

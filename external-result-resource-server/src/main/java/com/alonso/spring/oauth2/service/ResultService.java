@@ -1,4 +1,4 @@
-package com.alonso.sprin.oauth2.service;
+package com.alonso.spring.oauth2.service;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
