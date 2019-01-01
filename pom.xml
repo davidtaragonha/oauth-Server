@@ -10,11 +10,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>model</module>
+        <module>oauth-model</module>
         <module>iam-resource-server</module>
-        <module>runtime</module>
-        <module>security-server</module>
-        <module>external-result-resource-server</module>
+        <module>authorization-server</module>
+        <module>result-resource-server</module>
     </modules>
 
     <properties>
@@ -29,6 +28,7 @@
         <flywaydb.version>5.0.5</flywaydb.version>
         <oauth2.version>2.3.4.RELEASE</oauth2.version>
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
+        <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
 
         <!--Project properties-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,21 +41,6 @@
             <dependency>
                 <groupId>com.alonso</groupId>
                 <artifactId>model</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alonso</groupId>
-                <artifactId>iam-resource-server</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alonso</groupId>
-                <artifactId>runtime</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alonso</groupId>
-                <artifactId>security-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -75,7 +60,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-jwt</artifactId>
-                <version>1.0.9.RELEASE</version>
+                <version>${spring-security-jwt.version}</version>
             </dependency>
 
             <!--Mapstruct dependencies-->
