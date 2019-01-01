@@ -40,7 +40,7 @@
             <!--Project dependencies-->
             <dependency>
                 <groupId>com.alonso</groupId>
-                <artifactId>model</artifactId>
+                <artifactId>oauth-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
