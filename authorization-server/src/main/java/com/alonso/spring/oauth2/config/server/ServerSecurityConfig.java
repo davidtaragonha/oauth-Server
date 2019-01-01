@@ -1,7 +1,6 @@
 package com.alonso.spring.oauth2.config.server;
 
 import com.alonso.spring.oauth2.config.encryption.Encoders;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -17,11 +16,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Import(Encoders.class)
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+    private final PasswordEncoder userPasswordEncoder;
 
-    @Autowired
-    private PasswordEncoder userPasswordEncoder;
+    public ServerSecurityConfig(UserDetailsService userDetailsService, PasswordEncoder userPasswordEncoder) {
+        this.userDetailsService = userDetailsService;
+        this.userPasswordEncoder = userPasswordEncoder;
+    }
 
     @Override
     @Bean

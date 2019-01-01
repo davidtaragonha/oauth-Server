@@ -1,7 +1,5 @@
 package com.alonso.spring.oauth2.config.server;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -27,18 +25,23 @@ import javax.sql.DataSource;
 @Import(ServerSecurityConfig.class)
 public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("dataSource")
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    private PasswordEncoder oauthClientPasswordEncoder;
+    private final PasswordEncoder oauthClientPasswordEncoder;
+
+    public AuthServerOAuth2Config(DataSource dataSource,
+                                  AuthenticationManager authenticationManager,
+                                  UserDetailsService userDetailsService,
+                                  PasswordEncoder oauthClientPasswordEncoder) {
+        this.dataSource = dataSource;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.oauthClientPasswordEncoder = oauthClientPasswordEncoder;
+    }
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
